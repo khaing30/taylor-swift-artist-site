@@ -1,0 +1,728 @@
+:root {
+    --light: #dce6df;
+    --mid: #80998d;
+    --dark: #18342f;
+    --ink: #223a34;
+    --paper: #f3f1eb;
+    --on-dark: #f7f4ed;
+    --button-ink: #18342f;
+    --nav-height: 82px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--ink);
+    background: #f3f1eb;
+    font-family: var(--site-font-body);
+    overflow-x: clip;
+}
+
+/* Era selection changes images and logos only; the Tour palette stays fixed. */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.era-radio {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page {
+    min-height: 100vh;
+}
+
+.navbar {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 200px;
+    align-items: center;
+    min-height: var(--nav-height);
+    padding: 0 clamp(16px, 2.5vw, 36px);
+    color: var(--on-dark);
+    background: color-mix(in srgb, var(--dark) 93%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: color .65s ease, background-color .65s ease;
+}
+
+.era-logo {
+    position: relative;
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    padding: 3px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+    transition: background-color .65s ease, box-shadow .65s ease;
+}
+
+.era-logo img {
+    position: absolute;
+    display: none;
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.era-logo img.is-active {
+    display: block;
+    animation: logo-in .45s ease both;
+}
+
+body:has(#debut:checked) .logo-debut,
+body:has(#fearless:checked) .logo-fearless,
+body:has(#speak-now:checked) .logo-speak-now,
+body:has(#red:checked) .logo-red,
+body:has(#era-1989:checked) .logo-1989,
+body:has(#reputation:checked) .logo-reputation,
+body:has(#lover:checked) .logo-lover,
+body:has(#folklore:checked) .logo-folklore,
+body:has(#evermore:checked) .logo-evermore,
+body:has(#midnights:checked) .logo-midnights,
+body:has(#ttpd:checked) .logo-ttpd {
+    display: block;
+    animation: logo-in .45s ease both;
+}
+
+@keyframes logo-in {
+    from { opacity: 0; transform: rotate(-8deg) scale(.85); }
+    to { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 2.2vw, 34px);
+}
+
+.nav-links > a:not(.main-logo) {
+    position: relative;
+}
+
+.nav-links > a:not(.main-logo)::after {
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+    left: 0;
+    height: 1px;
+    content: "";
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform .25s ease;
+}
+
+.nav-links > a:hover::after,
+.nav-links > a.current::after {
+    transform: scaleX(1);
+}
+
+.navbar .main-logo.nav-brand {
+    display: flex;
+    width: 250px;
+    min-width: 250px;
+    margin-inline: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--site-font-display);
+    line-height: .78;
+    white-space: nowrap;
+}
+
+.navbar .main-logo.nav-brand strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: .02em;
+}
+
+.navbar .main-logo.nav-brand strong:last-child {
+    margin-top: 3px;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+}
+
+.socials,
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.socials a,
+.footer-socials a {
+    display: grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    opacity: .75;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.socials a:hover,
+.footer-socials a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.socials img,
+.footer-socials img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Navbar social icons only */
+.navbar .socials img {
+    filter: brightness(0) invert(1);
+}
+
+/* Make navbar social icons softer than navigation text */
+.navbar .socials a {
+    opacity: 0.62;
+}
+
+.eras {
+    min-height: auto;
+    padding: 2px 18px 32px;
+    background: #e5ebe7;
+    border-bottom: 1px solid rgba(23, 59, 50, 0.18);
+    transition: background 0.65s ease;
+}
+
+.poster-grid {
+    position: relative;
+    display: grid;
+    width: min(62vw, 720px);
+    aspect-ratio: 2 / 3;
+    margin: 0 auto 0;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    overflow: visible;
+    background: var(--mid);
+    box-shadow: 0 24px 65px color-mix(in srgb, var(--dark) 18%, transparent);
+    transition: background-color .65s ease;
+    scroll-margin-top: calc(var(--nav-height) + 24px);
+}
+
+.selected-picture {
+    position: relative;
+    z-index: 4;
+    grid-area: 2 / 2 / 4 / 4;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    background: var(--mid);
+    box-shadow: 0 22px 48px color-mix(in srgb, var(--dark) 36%, transparent);
+    transform: scale(1.09);
+    transition: background-color .65s ease, box-shadow .65s ease;
+}
+
+.selected-picture:focus-visible {
+    outline: 3px solid var(--on-dark);
+    outline-offset: 4px;
+}
+
+.selected-picture img {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: saturate(.76) contrast(.96);
+}
+
+.selected-era-logo {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    display: grid;
+    padding: 24px;
+    place-items:center;
+    pointer-events: none;
+}
+
+.selected-era-logo::after {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    padding-left: 2px;
+    place-items:center;
+    border: 5px solid color-mix(in srgb, var(--on-dark) 3%, transparent);
+    border-radius: 10%;
+    content: "▶";
+    color: var(--on-dark);
+    background: hwb(4 33% 9% / 0.281);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    font-size: 16px;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.selected-picture:hover .selected-era-logo::after {
+    opacity: .88;
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.selected-picture .selected-era-logo img {
+    position: static;
+    z-index: 1;
+    display: none;
+    width: min(76%, 300px);
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #f1be0656;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--paper) 3%, transparent);
+    box-shadow: 0 10px 28px hsla(0, 76%, 79%, 0.255);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    filter: none;
+}
+
+body:has(#debut:checked) .selected-logo-debut,
+body:has(#fearless:checked) .selected-logo-fearless,
+body:has(#speak-now:checked) .selected-logo-speak-now,
+body:has(#red:checked) .selected-logo-red,
+body:has(#era-1989:checked) .selected-logo-1989,
+body:has(#reputation:checked) .selected-logo-reputation,
+body:has(#lover:checked) .selected-logo-lover,
+body:has(#folklore:checked) .selected-logo-folklore,
+body:has(#evermore:checked) .selected-logo-evermore,
+body:has(#midnights:checked) .selected-logo-midnights,
+body:has(#ttpd:checked) .selected-logo-ttpd {
+    display: block;
+    animation: logo-in .45s ease both;
+}
+
+@keyframes logo-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+body:has(#debut:checked) .picture-debut,
+body:has(#fearless:checked) .picture-fearless,
+body:has(#speak-now:checked) .picture-speak-now,
+body:has(#red:checked) .picture-red,
+body:has(#era-1989:checked) .picture-1989,
+body:has(#reputation:checked) .picture-reputation,
+body:has(#lover:checked) .picture-lover,
+body:has(#folklore:checked) .picture-folklore,
+body:has(#evermore:checked) .picture-evermore,
+body:has(#midnights:checked) .picture-midnights,
+body:has(#ttpd:checked) .picture-ttpd {
+    display: block;
+    animation: picture-in .65s ease both;
+}
+
+@keyframes picture-in {
+    from { opacity: 0; transform: scale(1.07); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.era-card {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    cursor: pointer;
+    transform-origin: center;
+    transition: transform .34s cubic-bezier(.2, .8, .25, 1), filter .3s ease;
+}
+
+.era-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: saturate(.7) contrast(.95);
+    transition: filter .3s ease, transform .45s ease;
+}
+
+.era-card::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, .64));
+}
+
+.era-card:hover {
+    z-index: 5;
+    transform: scale(1.07);
+}
+
+.card-debut { grid-area: 1 / 1 / 2 / 2; }
+.card-fearless { grid-area: 1 / 2 / 2 / 3; }
+.card-speak-now { grid-area: 1 / 3 / 2 / 4; }
+.card-red { grid-area: 1 / 4 / 2 / 5; }
+.card-1989 { grid-area: 2 / 1 / 3 / 2; }
+.card-reputation { grid-area: 2 / 4 / 3 / 5; }
+.card-lover { grid-area: 3 / 1 / 4 / 2; }
+.card-folklore { grid-area: 3 / 4 / 4 / 5; }
+.card-evermore { grid-area: 4 / 1 / 5 / 2; }
+.card-midnights { grid-area: 4 / 2 / 5 / 4; }
+.card-ttpd { grid-area: 4 / 4 / 5 / 5; }
+
+body:has(#debut:checked) .card-debut,
+body:has(#fearless:checked) .card-fearless,
+body:has(#speak-now:checked) .card-speak-now,
+body:has(#red:checked) .card-red,
+body:has(#era-1989:checked) .card-1989,
+body:has(#reputation:checked) .card-reputation,
+body:has(#lover:checked) .card-lover,
+body:has(#folklore:checked) .card-folklore,
+body:has(#evermore:checked) .card-evermore,
+body:has(#midnights:checked) .card-midnights,
+body:has(#ttpd:checked) .card-ttpd {
+    z-index: 6;
+    transform: scale(1.15);
+}
+
+body:has(#debut:checked) .card-debut img,
+body:has(#fearless:checked) .card-fearless img,
+body:has(#speak-now:checked) .card-speak-now img,
+body:has(#red:checked) .card-red img,
+body:has(#era-1989:checked) .card-1989 img,
+body:has(#reputation:checked) .card-reputation img,
+body:has(#lover:checked) .card-lover img,
+body:has(#folklore:checked) .card-folklore img,
+body:has(#evermore:checked) .card-evermore img,
+body:has(#midnights:checked) .card-midnights img,
+body:has(#ttpd:checked) .card-ttpd img {
+    filter: saturate(.95) contrast(1);
+}
+
+.film {
+    padding: clamp(55px, 7vw, 85px) 18px;
+    text-align: center;
+    color: var(--ink);
+    background: #f4f1eb;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+    transition: color 0.65s ease, background-color 0.65s ease;
+}
+
+/* Small label above the main Film title */
+.film .section-title {
+    margin-bottom: 32px;
+}
+
+.film .section-title h3 {
+    margin: 0 0 14px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.25em;
+}
+
+/* Main Film section title */
+.film .section-title h2 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+/* Large cinematic video */
+.video {
+    width: min(84vw, 900px);
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+}
+
+.video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.pill-button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 26px;
+    padding: 0 26px;
+    border-radius: 0;
+    color: var(--on-dark);
+    background: var(--dark);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: transform .25s ease, background-color .65s ease;
+}
+
+.pill-button:hover {
+    transform: translateY(-3px);
+}
+
+.playlists {
+    padding: clamp(64px, 8vw, 104px) clamp(18px, 5vw, 70px) clamp(70px, 9vw, 112px);
+    background: var(--dark);
+    transition: background-color .65s ease;
+}
+
+.playlist-panel {
+    position: relative;
+    width: min(100%, 1180px);
+    margin: 0 auto;
+    padding: clamp(48px, 6vw, 76px) clamp(22px, 5vw, 66px) 16px;
+    color: var(--ink);
+}
+
+.playlist-panel::before {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 72%;
+    content: "";
+    border-radius: 0;
+    background: var(--light);
+    transition: background-color .65s ease;
+}
+
+.playlist-title {
+    position: relative;
+    z-index: 2;
+    margin-bottom: clamp(36px, 5vw, 58px);
+    color: var(--ink);
+    text-align: center;
+}
+
+.playlist-title p {
+    margin-bottom: 5px;
+    font-size: clamp(var(--text-sm), 2vw, var(--text-heading));
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.playlist-title h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(var(--text-sm), 2vw, var(--text-md));
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.025em;
+}
+
+.playlist-cards {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 4.5vw, 64px);
+    align-items: start;
+}
+
+.playlist-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    transition: transform .3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-8px);
+}
+
+.playlist-card > img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 0 16px 38px color-mix(in srgb, var(--dark) 35%, transparent);
+}
+
+.playlist-card a {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 0 25px;
+    border-radius: 0;
+    color: var(--button-ink);
+    background: var(--light);
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: color .65s ease, background-color .65s ease, transform .2s ease;
+}
+
+.playlist-card a:hover {
+    transform: translateY(-2px);
+}
+
+.footer {
+    padding: 42px 20px 38px;
+    text-align: center;
+    color: var(--ink);
+    background: var(--light);
+    border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+    transition: color .65s ease, background-color .65s ease;
+}
+
+.footer-socials {
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: .24em;
+}
+
+.footer small {
+    font-size: var(--text-sm);
+    opacity: .68;
+}
+
+@media (max-width: 1040px) {
+    .navbar {
+        grid-template-columns: 58px 1fr 168px;
+        padding-inline: 22px;
+    }
+
+    .nav-links {
+        gap: 24px;
+    }
+
+    .navbar .main-logo.nav-brand {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .navbar .main-logo.nav-brand strong:first-child {
+        font-size: 20px;
+    }
+
+    .navbar .main-logo.nav-brand strong:last-child {
+        margin-top: 3px;
+        font-size: 16px;
+        letter-spacing: 0.07em;
+    }
+
+    .socials {
+        gap: 7px;
+    }
+
+    .socials a {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 820px) {
+    .poster-grid {
+        width: min(94vw, 680px);
+    }
+
+    .playlist-cards {
+        width: min(100%, 430px);
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 520px) {
+    .socials a:nth-child(n+5) {
+        display: none;
+    }
+
+    .section-title h1,
+    .section-title h2 {
+        font-size: var(--text-lg);
+    }
+
+    .poster-grid {
+        width: calc(100vw - 20px);
+        box-shadow: 0 16px 40px color-mix(in srgb, var(--dark) 14%, transparent);
+    }
+
+    .era-card span {
+        right: 5px;
+        bottom: 6px;
+        left: 5px;
+        font-size: var(--text-sm);
+        font-weight: 700;
+        line-height: 1.15;
+    }
+
+    body:has(#debut:checked) .card-debut,
+    body:has(#fearless:checked) .card-fearless,
+    body:has(#speak-now:checked) .card-speak-now,
+    body:has(#red:checked) .card-red,
+    body:has(#era-1989:checked) .card-1989,
+    body:has(#reputation:checked) .card-reputation,
+    body:has(#lover:checked) .card-lover,
+    body:has(#folklore:checked) .card-folklore,
+    body:has(#evermore:checked) .card-evermore,
+    body:has(#midnights:checked) .card-midnights,
+    body:has(#ttpd:checked) .card-ttpd {
+        transform: scale(1.11);
+    }
+
+    .playlist-panel::before {
+        border-radius:0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore every Taylor Swift album era.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>ALBUM | TAYLOR SWIFT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/album.css">
+    <link rel="stylesheet" href="css/global.css">
+    <script src="js/nav.js" defer></script>
+    <script src="js/album.js" defer></script>
+</head>
+
+<body class="album-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+        <a class="monogram album-era-mark" href="index.html#home" aria-label="Taylor Swift home">
+            <img data-nav-era-logo src="images/tour/logo-debut.png" alt="Taylor Swift era logo">
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html#home">HOME</a>
+            <a href="tour.html">TOUR</a>
+            <a class="brand nav-brand" href="index.html#home" aria-label="Taylor Swift home">
+                <span>TAYLOR</span>
+                <span>SWIFT</span>
+            </a>
+            <a href="index.html#albums" aria-current="page">ALBUMS</a>
+            <a href="bio.html">BIO</a>
+        </nav>
+
+        <nav class="header-socials" aria-label="Official social media">
+            <a href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" target="_blank" rel="noopener" aria-label="Spotify"><img src="icons/spotify.svg" alt=""></a>
+            <a href="https://music.apple.com/us/artist/taylor-swift/159260351" target="_blank" rel="noopener" aria-label="Apple Music"><img src="icons/applemusic.svg" alt=""></a>
+            <a href="https://www.instagram.com/taylorswift/" target="_blank" rel="noopener" aria-label="Instagram"><img src="icons/instagram.svg" alt=""></a>
+            <a href="https://www.youtube.com/@TaylorSwift" target="_blank" rel="noopener" aria-label="YouTube"><img src="icons/youtube.svg" alt=""></a>
+            <a href="https://www.tiktok.com/@taylorswift" target="_blank" rel="noopener" aria-label="TikTok"><img src="icons/tiktok.svg" alt=""></a>
+            <a href="https://x.com/taylorswift13" target="_blank" rel="noopener" aria-label="X"><img src="icons/x.svg" alt=""></a>
+            <a href="https://www.facebook.com/TaylorSwift" target="_blank" rel="noopener" aria-label="Facebook"><img src="icons/facebook.svg" alt=""></a>
+        </nav>
+
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+            <div class="mobile-menu__panel">
+                <a class="brand nav-brand mobile-menu__logo" href="index.html#home" aria-label="Taylor Swift home">
+                    <span>TAYLOR</span><span>SWIFT</span>
+                </a>
+                <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+                    <a href="index.html#home">HOME</a>
+                    <a href="tour.html">TOUR</a>
+                    <a href="index.html#albums" aria-current="page">ALBUMS</a>
+                    <a href="bio.html">BIO</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="album-hero" aria-labelledby="album-title">
+            <div class="hero-art">
+                <span class="hero-number" data-era-number>01</span>
+                <figure class="hero-portrait">
+                    <img data-era-image src="images/album/era-debut.jpg" alt="Taylor Swift debut era">
+                </figure>
+                <figure class="hero-cover">
+                    <img data-cover src="images/album/debut-cover.jpg" alt="Taylor Swift album cover">
+                </figure>
+            </div>
+
+            <div class="hero-copy">
+                <p class="eyebrow"><span data-year>2006</span><i></i><span data-genre>COUNTRY POP</span></p>
+                <h1 id="album-title" class="visually-hidden">Taylor Swift</h1>
+                <img class="album-logo" data-logo src="images/album/debut-logo.png" alt="Taylor Swift">
+                <p class="hero-description" data-description>The first chapter of a songwriting story.</p>
+                <div class="hero-actions">
+                    <a class="button button--solid" href="#listen">LISTEN NOW <span>↓</span></a>
+                    <a class="button" href="#videos">VIDEOS <span>↘</span></a>
+                </div>
+            </div>
+
+            <a class="scroll-cue" href="#era-menu"><span></span>EXPLORE</a>
+        </section>
+
+        <nav class="era-menu" id="era-menu" aria-label="Choose an album era">
+            <div class="era-menu__inner" data-era-menu></div>
+        </nav>
+
+        <section class="listen-section" id="listen" aria-labelledby="listen-title">
+            <div class="section-title">
+                <h2 id="listen-title">STREAM</h2>
+            </div>
+
+            <div class="stream-links">
+                <a data-spotify-link href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" target="_blank" rel="noopener"><img src="icons/spotify.svg" alt=""><span>SPOTIFY</span></a>
+                <a data-apple-link href="https://music.apple.com/us/artist/taylor-swift/159260351" target="_blank" rel="noopener">
+                    <img class="stream-logo--apple" src="icons/applemusic.svg" alt="">
+                    <span>APPLE MUSIC</span>
+                </a>
+                <a data-amazon-link href="https://music.amazon.com/search/Taylor%20Swift" target="_blank" rel="noopener">
+                    <img class="stream-logo--amazon" src="icons/amazonmusic.svg" alt="Amazon Music">
+                </a>
+                <a data-more-link href="https://taylor.lnk.to/TaylorSwiftAlbum" target="_blank" rel="noopener"><span>MORE</span></a>
+            </div>
+
+            <div class="spotify-player">
+                <iframe data-spotify-embed src="https://open.spotify.com/embed/album/5eyZZoQEFQWRHkV2xgAeBw?utm_source=generator&theme=0" title="Taylor Swift album on Spotify" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            </div>
+        </section>
+
+        <section class="video-section" id="videos" aria-labelledby="videos-title">
+            <div class="media-heading">
+                <h2 id="videos-title">VIDEO</h2>
+            </div>
+
+            <div class="video-grid" data-video-grid></div>
+
+            <a class="more-videos" href="https://www.youtube.com/@TaylorSwift/videos" target="_blank" rel="noopener">View More Music &amp; Lyric Videos</a>
+        </section>
+
+        <section class="photos-section" id="photos" aria-labelledby="photos-title">
+            <div class="media-heading">
+                <p class="photos-kicker">A VISUAL CHAPTER · <span data-photos-era>TAYLOR SWIFT</span></p>
+                <h2 id="photos-title">The Era in Frames</h2>
+            </div>
+
+            <div class="photos-grid" data-photos-grid></div>
+        </section>
+
+        <section class="era-navigation" aria-label="Album era navigation">
+            <div class="era-navigation__inner">
+                <a class="era-card era-card--previous" data-previous-link href="album.html?album=showgirl">
+                    <span class="era-card__arrow" aria-hidden="true">←</span>
+                    <img data-previous-cover src="images/album/showgirl-cover.jpg" alt="The Life of a Showgirl album cover">
+                    <span class="era-card__copy">
+                        <small>PREVIOUS ERA</small>
+                        <strong data-previous-title>SHOWGIRL</strong>
+                    </span>
+                </a>
+
+                <a class="era-card era-card--next" data-next-link href="album.html?album=fearless">
+                    <img data-next-cover src="images/album/fearless-cover.png" alt="Fearless album cover">
+                    <span class="era-card__copy">
+                        <small>NEXT ERA</small>
+                        <strong data-next-title>FEARLESS</strong>
+                    </span>
+                    <span class="era-card__arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/TaylorSwift" target="_blank" rel="noopener" aria-label="Facebook"><img src="icons/facebook.svg" alt=""></a>
+            <a href="https://www.instagram.com/taylorswift" target="_blank" rel="noopener" aria-label="Instagram"><img src="icons/instagram.svg" alt=""></a>
+            <a href="https://x.com/taylorswift13" target="_blank" rel="noopener" aria-label="X"><img src="icons/x.svg" alt=""></a>
+            <a href="https://www.tiktok.com/@taylorswift" target="_blank" rel="noopener" aria-label="TikTok"><img src="icons/tiktok.svg" alt=""></a>
+            <a href="https://www.youtube.com/@TaylorSwift" target="_blank" rel="noopener" aria-label="YouTube"><img src="icons/youtube.svg" alt=""></a>
+            <a href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" target="_blank" rel="noopener" aria-label="Spotify"><img src="icons/spotify.svg" alt=""></a>
+            <a href="https://music.apple.com/us/artist/taylor-swift/159260351" target="_blank" rel="noopener" aria-label="Apple Music"><img src="icons/applemusic.svg" alt=""></a>
+        </div>
+        <p>UNOFFICIAL EDUCATIONAL ARTIST SITE</p>
+        <small>© 2026 Taylor Swift Fan Project. Created for educational purposes.</small>
+    </footer>
+</body>
+</html>
