@@ -37,7 +37,7 @@ let changingFromLogo = false;
 // Keep the listening destination synchronized with the selected era.
 const updateListenLink = (eraId) => {
     if (!listenLink) return;
-    listenLink.href = `album.html?album=${albumByEra[eraId]}#listen`;
+    listenLink.href = `album.html?album=${albumByEra[eraId]}`;
     listenLink.setAttribute("aria-label", `Listen to the ${eraId.replace("era-", "")} era album`);
 };
 
