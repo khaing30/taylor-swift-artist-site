@@ -1762,5 +1762,5 @@ body.video-open {
 
 /* HOME initial header position — desktop and mobile */
 .home-page .site-header.hero-header:not(.is-scrolled) {
-    top: 30px !important;
+    top: 15px !important;
 }
